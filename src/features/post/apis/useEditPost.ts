@@ -1,23 +1,22 @@
+import { usePosts } from "./usePosts";
 import { useParams } from "react-router-dom";
 import { ReqUpdatePost } from "../types";
+import { setStorageItem } from "@/shared/utils";
 
 export const useEditPost = () => {
+  const { posts } = usePosts();
   const { id } = useParams<{ id: string }>();
 
   const editPost = async (newPost: ReqUpdatePost): Promise<boolean> => {
     try {
-      const posts = localStorage.getItem("posts");
+      const newPosts = posts.map((post: { id: string }) => {
+        if (post.id === id) {
+          return { ...post, ...newPost };
+        }
+        return post;
+      });
 
-      const newPosts = posts
-        ? JSON.parse(posts).map((post: { id: string }) => {
-            if (post.id === id) {
-              return { ...post, ...newPost };
-            }
-            return post;
-          })
-        : [];
-
-      localStorage.setItem("posts", JSON.stringify(newPosts));
+      setStorageItem("posts", newPosts);
 
       return true;
     } catch (error) {

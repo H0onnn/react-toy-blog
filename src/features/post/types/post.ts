@@ -19,6 +19,7 @@ export interface ReqPost {
 }
 
 export interface ReqUpdatePost {
+  id: string;
   title: string;
   content: string;
 }

@@ -1,7 +1,11 @@
+import { usePosts } from "@/features/post/apis";
+import { setStorageItem } from "@/shared/utils";
 import { Comment, ReqComment } from "../types";
 import { Post } from "@/features/post/types";
 
 export const useWriteComment = () => {
+  const { posts } = usePosts();
+
   const writeComment = async (
     newComment: ReqComment
   ): Promise<Comment | null> => {
@@ -12,13 +16,8 @@ export const useWriteComment = () => {
         content: newComment.content,
         createdAt: newComment.createdAt,
       };
-
-      const posts = localStorage.getItem("posts");
-
       if (posts) {
-        const parsedPosts: Post[] = JSON.parse(posts);
-
-        const updatedPosts = parsedPosts.map((post) => {
+        const updatedPosts = posts.map((post) => {
           if (post.id === newComment.postId) {
             const updatedPost: Post = {
               ...post,
@@ -29,7 +28,7 @@ export const useWriteComment = () => {
           return post;
         });
 
-        localStorage.setItem("posts", JSON.stringify(updatedPosts));
+        setStorageItem("posts", updatedPosts);
       }
 
       return createdComment;

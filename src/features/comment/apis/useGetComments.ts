@@ -1,18 +1,16 @@
 import { useState, useEffect, useCallback } from "react";
+import { usePosts } from "@/features/post/apis";
 
 import { Comment } from "../types";
-import { Post } from "@/features/post/types";
 
 export const useGetComments = (postId: string) => {
+  const { posts } = usePosts();
   const [comments, setComments] = useState<Comment[]>([]);
 
   const fetchComments = useCallback(async () => {
     try {
-      const posts = localStorage.getItem("posts");
-
       if (posts) {
-        const parsedPosts: Post[] = JSON.parse(posts);
-        const post = parsedPosts.find((post) => post.id === postId);
+        const post = posts.find((post) => post.id === postId);
 
         if (post) {
           setComments(post.comments ?? []);
@@ -21,7 +19,7 @@ export const useGetComments = (postId: string) => {
     } catch (error) {
       console.error("Comment fetching error: ", error);
     }
-  }, [postId]);
+  }, [postId, posts]);
 
   useEffect(() => {
     fetchComments();

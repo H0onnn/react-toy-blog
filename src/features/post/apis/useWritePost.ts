@@ -1,6 +1,9 @@
+import { usePosts } from "./usePosts";
 import { ReqPost, Post } from "../types";
 
 export const useWritePost = () => {
+  const { posts } = usePosts();
+
   const writePost = async (newPost: ReqPost): Promise<Post | null> => {
     try {
       const createdPost: Post = {
@@ -13,14 +16,8 @@ export const useWritePost = () => {
         comments: [],
       };
 
-      const posts = localStorage.getItem("posts");
-
       if (posts) {
-        const parsedPosts = JSON.parse(posts);
-        localStorage.setItem(
-          "posts",
-          JSON.stringify([...parsedPosts, createdPost])
-        );
+        localStorage.setItem("posts", JSON.stringify([...posts, createdPost]));
       } else {
         localStorage.setItem("posts", JSON.stringify([createdPost]));
       }

@@ -1,17 +1,18 @@
+import { usePosts } from "./usePosts";
 import { useParams } from "react-router-dom";
+import { setStorageItem } from "@/shared/utils";
 
 export const useDeletePost = () => {
+  const { posts } = usePosts();
   const { id } = useParams<{ id: string }>();
 
   const deletePost = async (): Promise<boolean> => {
     try {
-      const posts = localStorage.getItem("posts");
-
       const newPosts = posts
-        ? JSON.parse(posts).filter((post: { id: string }) => post.id !== id)
+        ? posts.filter((post: { id: string }) => post.id !== id)
         : [];
 
-      localStorage.setItem("posts", JSON.stringify(newPosts));
+      setStorageItem("posts", newPosts);
 
       return true;
     } catch (error) {

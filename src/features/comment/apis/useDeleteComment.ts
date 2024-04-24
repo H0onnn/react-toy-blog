@@ -1,4 +1,6 @@
+import { usePosts } from "@/features/post/apis";
 import { Post } from "@/features/post/types";
+import { setStorageItem } from "@/shared/utils";
 
 interface Props {
   postId: string;
@@ -6,14 +8,12 @@ interface Props {
 }
 
 export const useDeleteComment = ({ postId, commentId }: Props) => {
-  const posts = localStorage.getItem("posts");
+  const { posts } = usePosts();
 
   const deleteComment = async (): Promise<boolean> => {
     try {
       if (posts) {
-        const parsedPosts: Post[] = JSON.parse(posts);
-
-        const updatedPosts = parsedPosts.map((post) => {
+        const updatedPosts = posts.map((post) => {
           if (post.id === postId) {
             const updatedPost: Post = {
               ...post,
@@ -26,7 +26,7 @@ export const useDeleteComment = ({ postId, commentId }: Props) => {
           return post;
         });
 
-        localStorage.setItem("posts", JSON.stringify(updatedPosts));
+        setStorageItem("posts", updatedPosts);
       }
 
       return true;
