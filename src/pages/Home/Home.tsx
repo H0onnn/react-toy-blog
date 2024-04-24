@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { usePosts } from "@/features/post/apis";
 import { PostList, WriteButton } from "@/features/post/components";
 import { Flex } from "@/shared/components/ui";
+import { NoneDataFallback } from "@/shared/components/fallback";
 
 const Home = () => {
   const { posts } = usePosts();
@@ -15,7 +16,7 @@ const Home = () => {
         <WriteButton href="/post/new">게시글 작성</WriteButton>
       </Flex>
 
-      <PostList posts={posts} />
+      {posts.length > 0 ? <PostList posts={posts} /> : <NoneDataFallback />}
     </>
   );
 };
