@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { PageLayout } from "../shared/components/layout";
-import { NotFound } from "@/shared/components/fallback";
+import { NotFound, Loading } from "@/shared/components/fallback";
 
 const Home = lazy(() => import("@/pages/Home/Home"));
 const PostDetail = lazy(() => import("@/pages/Post/PostDetail"));
@@ -17,7 +17,13 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense
+            fallback={
+              <>
+                <Loading />
+              </>
+            }
+          >
             <Home />
           </Suspense>
         ),
@@ -28,7 +34,13 @@ export const router = createBrowserRouter([
           {
             path: ":id",
             element: (
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense
+                fallback={
+                  <>
+                    <Loading />
+                  </>
+                }
+              >
                 <PostDetail />
               </Suspense>
             ),
@@ -36,7 +48,13 @@ export const router = createBrowserRouter([
           {
             path: "new",
             element: (
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense
+                fallback={
+                  <>
+                    <Loading />
+                  </>
+                }
+              >
                 <New />
               </Suspense>
             ),
@@ -44,7 +62,13 @@ export const router = createBrowserRouter([
           {
             path: ":id/edit",
             element: (
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense
+                fallback={
+                  <>
+                    <Loading />
+                  </>
+                }
+              >
                 <Edit />
               </Suspense>
             ),
