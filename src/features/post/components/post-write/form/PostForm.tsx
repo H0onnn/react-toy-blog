@@ -34,7 +34,7 @@ export const PostForm = () => {
         handleSubmit();
       }}
     >
-      <Flex direction="column" gap={20}>
+      <Flex direction="column" gap={20} style={{ margin: "2rem 0" }}>
         <Input
           placeholder="제목을 입력해주세요."
           value={title}
