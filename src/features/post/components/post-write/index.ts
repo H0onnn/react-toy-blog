@@ -1,2 +1,2 @@
-export * from "./ButtonSection";
-export * from "./PostForm";
+export * from "./form";
+export * from "./button";

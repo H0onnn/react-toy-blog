@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 import { usePosts } from "@/features/post/apis";
-import { PostList } from "@/features/post/components";
-import { Flex, WriteButton } from "@/shared/components/ui";
+import { PostList, WriteButton } from "@/features/post/components";
+import { Flex } from "@/shared/components/ui";
 
 const Home = () => {
   const { posts } = usePosts();

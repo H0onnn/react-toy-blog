@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Button, ButtonProps } from "./Button";
+import { Button, ButtonProps } from "@/shared/components/ui/Button";
 
 interface Props extends ButtonProps {
   children: React.ReactNode;

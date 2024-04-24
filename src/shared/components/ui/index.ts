@@ -8,4 +8,3 @@ export * from "./Textarea";
 export * from "./Button";
 export * from "./IconButton";
 export * from "./Divider";
-export * from "./WriteButton";
