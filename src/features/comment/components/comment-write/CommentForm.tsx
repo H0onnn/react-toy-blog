@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useWriteComment } from "../../apis";
-import { Flex, Input, Button } from "@/shared/components/ui";
+import { Flex, Input, Button, Icon } from "@/shared/components/ui";
 
 export const CommentForm = () => {
   const { writeComment } = useWriteComment();
@@ -42,21 +42,10 @@ export const CommentForm = () => {
           onVChange={(value) => {
             setComment(value);
           }}
-          leftSlot={
-            <img
-              src="/icons/pencil.svg"
-              alt="pencil"
-              style={{ width: 24, height: 24 }}
-            />
-          }
+          leftSlot={<Icon src="/icons/pencil.svg" />}
         />
 
-        <Button
-          type="submit"
-          rightSlot={
-            <img src="/icons/plus.svg" alt="plus" width={24} height={24} />
-          }
-        >
+        <Button type="submit" rightSlot={<Icon src="/icons/plus.svg" />}>
           댓글 작성
         </Button>
       </Flex>

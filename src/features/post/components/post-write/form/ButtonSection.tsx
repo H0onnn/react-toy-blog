@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Button, Flex } from "@/shared/components/ui";
+import { Button, Flex, Icon } from "@/shared/components/ui";
 
 export const ButtonSection = () => {
   const navigate = useNavigate();
@@ -18,9 +18,7 @@ export const ButtonSection = () => {
 
       <Button
         type="submit"
-        leftSlot={
-          <img src="/icons/pencil.svg" alt="pencil" width={24} height={24} />
-        }
+        leftSlot={<Icon src="/icons/pencil.svg" />}
         style={{
           width: 120,
         }}

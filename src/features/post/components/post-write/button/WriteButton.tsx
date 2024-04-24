@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button, ButtonProps } from "@/shared/components/ui/Button";
+import { Icon } from "@/shared/components/ui";
 
 interface Props extends ButtonProps {
   children: React.ReactNode;
@@ -17,14 +18,7 @@ export const WriteButton = ({
     <Link to={href}>
       <Button
         {...props}
-        rightSlot={
-          <img
-            src="/icons/plus.svg"
-            alt="plus"
-            width={imgSize}
-            height={imgSize}
-          />
-        }
+        rightSlot={<Icon src="/icons/plus.svg" size={imgSize} />}
       >
         {children}
       </Button>
