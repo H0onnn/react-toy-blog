@@ -1,24 +1,23 @@
 import { Flex, IconButton } from "@/shared/components/ui";
 
 interface Props {
-  isEdit: boolean;
+  editIcon: string;
+  deleteIcon: string;
   onEditClick: () => void;
   onDeleteClick: () => void;
 }
 
 export const ActionButtons = ({
-  isEdit,
+  editIcon,
+  deleteIcon,
   onEditClick,
   onDeleteClick,
 }: Props) => {
   return (
     <Flex gap={10}>
-      <IconButton src="/icons/pencil-black.svg" onClick={onEditClick} />
+      <IconButton src={editIcon} onClick={onEditClick} />
 
-      <IconButton
-        src={isEdit === false ? "/icons/delete-black.svg" : "/icons/cancel.svg"}
-        onClick={onDeleteClick}
-      />
+      <IconButton src={deleteIcon} onClick={onDeleteClick} />
     </Flex>
   );
 };
