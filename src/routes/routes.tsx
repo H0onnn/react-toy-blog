@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { PageLayout } from "../shared/components/layout";
+import { NotFound } from "@/shared/components/fallback";
 
 const Home = lazy(() => import("@/pages/Home/Home"));
 const PostDetail = lazy(() => import("@/pages/Post/PostDetail"));
@@ -11,6 +12,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <PageLayout />,
+    errorElement: <NotFound />,
     children: [
       {
         index: true,
