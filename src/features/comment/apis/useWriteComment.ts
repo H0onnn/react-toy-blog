@@ -1,10 +1,10 @@
-import { usePosts } from "@/features/post/apis";
+import { usePostContext } from "@/context";
 import { setStorageItem } from "@/shared/utils";
 import { Comment, ReqComment } from "../types";
 import { Post } from "@/features/post/types";
 
 export const useWriteComment = () => {
-  const { posts } = usePosts();
+  const { posts, setPosts } = usePostContext();
 
   const writeComment = async (
     newComment: ReqComment
@@ -16,18 +16,20 @@ export const useWriteComment = () => {
         content: newComment.content,
         createdAt: newComment.createdAt,
       };
+
       if (posts) {
         const updatedPosts = posts.map((post) => {
           if (post.id === newComment.postId) {
             const updatedPost: Post = {
               ...post,
-              comments: [...(post.comments || []), createdComment],
+              comments: [...post.comments, createdComment],
             };
             return updatedPost;
           }
           return post;
         });
 
+        setPosts(updatedPosts);
         setStorageItem("posts", updatedPosts);
       }
 

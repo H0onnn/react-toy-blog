@@ -75,7 +75,7 @@ const PostDetail = () => {
         <Divider />
       </Flex>
 
-      {postDetail.comments && <CommentList postId={postDetail.id} />}
+      {postDetail.comments && <CommentList />}
 
       <CommentForm />
     </>

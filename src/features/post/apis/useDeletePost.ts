@@ -1,9 +1,9 @@
-import { usePosts } from "./usePosts";
+import { usePostContext } from "@/context";
 import { useParams } from "react-router-dom";
 import { setStorageItem } from "@/shared/utils";
 
 export const useDeletePost = () => {
-  const { posts } = usePosts();
+  const { posts, setPosts } = usePostContext();
   const { id } = useParams<{ id: string }>();
 
   const deletePost = async (): Promise<boolean> => {
@@ -12,6 +12,7 @@ export const useDeletePost = () => {
         ? posts.filter((post: { id: string }) => post.id !== id)
         : [];
 
+      setPosts(newPosts);
       setStorageItem("posts", newPosts);
 
       return true;

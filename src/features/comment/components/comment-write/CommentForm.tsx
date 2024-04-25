@@ -20,7 +20,6 @@ export const CommentForm = () => {
 
     if (newComment) {
       setComment("");
-      window.location.reload();
     } else {
       window.alert("댓글 작성중 오류가 발생했습니다.");
     }

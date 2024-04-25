@@ -1,31 +1,33 @@
-import { useState, useEffect, useCallback } from "react";
-import { usePosts } from "@/features/post/apis";
+import { useEffect, useCallback } from "react";
+import { useParams } from "react-router-dom";
+import { usePostContext } from "@/context";
 
 import { Comment } from "../types";
 
-export const useGetComments = (postId: string) => {
-  const { posts } = usePosts();
-  const [comments, setComments] = useState<Comment[]>([]);
+export const useGetComments = (): Comment[] => {
+  const { posts } = usePostContext();
+  const { id } = useParams<{ id: string }>();
 
-  const fetchComments = useCallback(async () => {
-    try {
-      if (posts) {
-        const post = posts.find((post) => post.id === postId);
+  const getComments = useCallback(
+    (id: string): Comment[] => {
+      if (!id || !posts) return [];
 
-        if (post) {
-          setComments(post.comments ?? []);
-        }
-      }
-    } catch (error) {
-      console.error("Comment fetching error: ", error);
-    }
-  }, [postId, posts]);
+      const post = posts.find((post) => post.id === id);
+
+      return post?.comments || [];
+    },
+    [posts]
+  );
 
   useEffect(() => {
-    fetchComments();
-  }, [fetchComments]);
+    if (id) {
+      getComments(id);
+    }
+  }, [getComments, id]);
 
-  return {
-    comments,
-  };
+  if (id) {
+    return getComments(id);
+  } else {
+    return [];
+  }
 };

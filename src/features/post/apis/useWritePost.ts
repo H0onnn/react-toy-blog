@@ -1,8 +1,8 @@
-import { usePosts } from "./usePosts";
+import { usePostContext } from "@/context";
 import { ReqPost, Post } from "../types";
 
 export const useWritePost = () => {
-  const { posts } = usePosts();
+  const { posts, setPosts } = usePostContext();
 
   const writePost = async (newPost: ReqPost): Promise<Post | null> => {
     try {
@@ -17,6 +17,7 @@ export const useWritePost = () => {
       };
 
       if (posts) {
+        setPosts([...posts, createdPost]);
         localStorage.setItem("posts", JSON.stringify([...posts, createdPost]));
       } else {
         localStorage.setItem("posts", JSON.stringify([createdPost]));

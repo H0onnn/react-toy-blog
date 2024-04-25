@@ -7,7 +7,7 @@ export interface Post {
   imgSrc?: string;
   createdAt: string;
   updatedAt?: string;
-  comments?: Comment[];
+  comments: Comment[] | [];
 }
 
 export interface ReqPost {

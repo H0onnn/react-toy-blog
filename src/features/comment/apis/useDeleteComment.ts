@@ -1,39 +1,42 @@
-import { usePosts } from "@/features/post/apis";
-import { Post } from "@/features/post/types";
+import { usePostContext } from "@/context";
+import { useParams } from "react-router-dom";
 import { setStorageItem } from "@/shared/utils";
 
 interface Props {
-  postId: string;
   commentId: string;
 }
 
-export const useDeleteComment = ({ postId, commentId }: Props) => {
-  const { posts } = usePosts();
+export const useDeleteComment = ({ commentId }: Props) => {
+  const { posts, setPosts } = usePostContext();
+  const { id } = useParams<{ id: string }>();
 
   const deleteComment = async (): Promise<boolean> => {
     try {
-      if (posts) {
-        const updatedPosts = posts.map((post) => {
-          if (post.id === postId) {
-            const updatedPost: Post = {
-              ...post,
-              comments: post.comments?.filter(
-                (comment) => comment.id !== commentId
-              ),
-            };
-            return updatedPost;
-          }
-          return post;
-        });
+      const postIndex = posts.findIndex((post) => post.id === id);
 
+      if (postIndex !== -1) {
+        const updatedComments = posts[postIndex].comments.filter(
+          (comment) => comment.id !== commentId
+        );
+
+        const updatedPost = {
+          ...posts[postIndex],
+          comments: updatedComments,
+        };
+
+        const updatedPosts = [...posts];
+        updatedPosts[postIndex] = updatedPost;
+
+        setPosts(updatedPosts);
         setStorageItem("posts", updatedPosts);
-      }
 
-      return true;
+        return true;
+      }
     } catch (error) {
       console.error("Comment delete error: ", error);
-      return false;
     }
+
+    return false;
   };
 
   return {

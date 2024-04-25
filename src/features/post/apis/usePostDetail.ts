@@ -1,12 +1,12 @@
 import { useEffect, useState, useCallback } from "react";
-import { usePosts } from "./usePosts";
+import { usePostContext } from "@/context";
 import { useParams } from "react-router-dom";
 
 import { Post } from "../types";
 
 export const usePostDetail = () => {
   const [postDetail, setPostDetail] = useState<Post | null>(null);
-  const { posts } = usePosts();
+  const { posts } = usePostContext();
 
   const { id } = useParams<{ id: string }>();
 

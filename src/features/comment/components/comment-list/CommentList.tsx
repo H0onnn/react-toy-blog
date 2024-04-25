@@ -2,12 +2,8 @@ import { useGetComments } from "../../apis";
 import { Flex } from "@/shared/components/ui";
 import { CommentItem } from "./CommentItem";
 
-interface Props {
-  postId: string;
-}
-
-export const CommentList = ({ postId }: Props) => {
-  const { comments } = useGetComments(postId);
+export const CommentList = () => {
+  const comments = useGetComments();
 
   return (
     <Flex direction="column" gap={30}>

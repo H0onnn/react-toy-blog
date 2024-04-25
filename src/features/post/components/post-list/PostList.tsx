@@ -17,6 +17,7 @@ export const PostList = ({ posts }: Props) => {
           title={post.title}
           content={post.content}
           createdAt={post.createdAt}
+          comments={post.comments}
         />
       ))}
     </Container>

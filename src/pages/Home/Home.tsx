@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-import { usePosts } from "@/features/post/apis";
+import { usePostContext } from "@/context";
 import { PostList, WriteButton } from "@/features/post/components";
 import { Flex } from "@/shared/components/ui";
 import { NoneDataFallback } from "@/shared/components/fallback";
 
 const Home = () => {
-  const { posts } = usePosts();
+  const { posts } = usePostContext();
 
   return (
     <>

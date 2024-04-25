@@ -6,12 +6,10 @@ import { Comment } from "../../types";
 import { THEMES, full_img_cover } from "@/shared/styles";
 import { Flex, Tag, IconButton } from "@/shared/components/ui";
 
-interface Props extends Comment {
-  postId: string;
-}
+interface Props extends Comment {}
 
-export const CommentItem = ({ postId, id, content, createdAt }: Props) => {
-  const { deleteComment } = useDeleteComment({ postId, commentId: id });
+export const CommentItem = ({ id, content, createdAt }: Props) => {
+  const { deleteComment } = useDeleteComment({ commentId: id });
 
   const handleDeleteComment = async () => {
     if (!window.confirm("댓글을 삭제하시겠습니까?")) return;
@@ -19,7 +17,7 @@ export const CommentItem = ({ postId, id, content, createdAt }: Props) => {
     const isDeleted = await deleteComment();
 
     if (isDeleted) {
-      window.location.reload();
+      window.alert("댓글이 삭제되었습니다.");
     } else {
       window.alert("댓글 삭제 중 오류가 발생했습니다.");
     }

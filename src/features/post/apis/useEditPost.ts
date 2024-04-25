@@ -1,22 +1,28 @@
-import { usePosts } from "./usePosts";
+import { usePostContext } from "@/context";
 import { useParams } from "react-router-dom";
 import { ReqUpdatePost } from "../types";
 import { setStorageItem } from "@/shared/utils";
 
 export const useEditPost = () => {
-  const { posts } = usePosts();
+  const { posts, setPosts } = usePostContext();
   const { id } = useParams<{ id: string }>();
 
   const editPost = async (newPost: ReqUpdatePost): Promise<boolean> => {
     try {
-      const newPosts = posts.map((post: { id: string }) => {
+      const updatedPosts = posts.map((post) => {
         if (post.id === id) {
-          return { ...post, ...newPost };
+          return {
+            ...post,
+            title: newPost.title,
+            content: newPost.content,
+            updatedAt: new Date().toISOString(),
+          };
         }
         return post;
       });
 
-      setStorageItem("posts", newPosts);
+      setPosts(updatedPosts);
+      setStorageItem("posts", updatedPosts);
 
       return true;
     } catch (error) {
