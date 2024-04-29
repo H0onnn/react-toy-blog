@@ -34,10 +34,13 @@ export const GlobalStyles = createGlobalStyle`
     body {
         margin:0;
         padding:0;
+        font-family: 'Pretendard-Regular', sans-serif;
     }
 
     @font-face {
-        font-family: 'Prentendard';
-        src: url('/fonts/Pentendard-Regular.otf');
-    }
+    font-family: 'Pretendard-Regular';
+    src: url('/fonts/Pretendard-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
 `;
