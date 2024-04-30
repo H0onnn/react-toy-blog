@@ -64,7 +64,7 @@ export const EditForm = () => {
 
         <Input
           value={title}
-          onVChange={(value) => setTitle(value)}
+          onChange={(value) => setTitle(value)}
           required
           leftSlot={<Icon src="/icons/pencil.svg" />}
         />
@@ -82,7 +82,7 @@ export const EditForm = () => {
 
       <Textarea
         value={content}
-        onVChange={(value) => setContent(value)}
+        onChange={(value) => setContent(value)}
         required
         maxLength={2000}
         style={{ minHeight: 300 }}

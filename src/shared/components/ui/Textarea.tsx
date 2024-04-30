@@ -4,14 +4,15 @@ import styled from "styled-components";
 
 import { THEMES } from "@/shared/styles";
 
-interface Props extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+interface Props
+  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "onChange"> {
   placeholder?: string;
   value: string;
-  onVChange: (value: string) => void;
+  onChange: (value: string) => void;
 }
 
 const Textarea = (
-  { placeholder, value, onVChange, required = false, style, ...props }: Props,
+  { placeholder, value, onChange, required = false, style, ...props }: Props,
   ref: React.Ref<HTMLTextAreaElement>
 ) => {
   return (
@@ -20,7 +21,7 @@ const Textarea = (
         {...props}
         ref={ref}
         value={value}
-        onChange={(e) => onVChange(e.target.value)}
+        onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         required={required}
         tabIndex={0}

@@ -38,9 +38,7 @@ export const PostForm = () => {
         <Input
           placeholder="제목을 입력해주세요."
           value={title}
-          onVChange={(value) => {
-            setTitle(value);
-          }}
+          onChange={(value) => setTitle(value)}
           required
           leftSlot={
             <img
@@ -54,9 +52,7 @@ export const PostForm = () => {
         <Textarea
           placeholder="내용을 입력해주세요."
           value={content}
-          onVChange={(value) => {
-            setContent(value);
-          }}
+          onChange={(value) => setContent(value)}
           required
           maxLength={2000}
           style={{ minHeight: 300 }}

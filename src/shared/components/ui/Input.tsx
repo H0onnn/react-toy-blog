@@ -4,10 +4,11 @@ import styled from "styled-components";
 
 import { THEMES } from "@/shared/styles";
 
-interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
+interface Props
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {
   placeholder?: string;
   value: string;
-  onVChange: (value: string) => void;
+  onChange: (value: string) => void;
   leftSlot?: React.ReactNode;
   rightSlot?: React.ReactNode | "reset";
 }
@@ -16,7 +17,7 @@ const Input = (
   {
     placeholder,
     value,
-    onVChange,
+    onChange,
     required = false,
     leftSlot,
     rightSlot,
@@ -31,7 +32,7 @@ const Input = (
         {...props}
         ref={ref}
         value={value}
-        onChange={(e) => onVChange(e.target.value)}
+        onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         required={required}
         tabIndex={0}

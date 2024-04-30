@@ -38,7 +38,7 @@ export const CommentForm = () => {
           placeholder="댓글을 입력해주세요."
           required
           value={comment}
-          onVChange={(value) => {
+          onChange={(value) => {
             setComment(value);
           }}
           leftSlot={<Icon src="/icons/pencil.svg" />}
