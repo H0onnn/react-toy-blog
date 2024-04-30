@@ -2,30 +2,39 @@ import styled from "styled-components";
 
 import { Outlet } from "react-router-dom";
 
-import { SideNavBar } from "./SideNavBar";
+import { Header } from "./Header";
 
 export const PageLayout = () => {
   return (
     <Layout>
-      <SideNavBar />
-      <main>
+      <div>
+        <Header />
         <Outlet />
-      </main>
+      </div>
     </Layout>
   );
 };
 
 const Layout = styled.div`
-  height: 100vh;
-  display: flex;
+  width: 1728px;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 
-  & > main {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    height: 100%;
-    padding: 2.4rem;
-    margin-left: 26rem;
-    overflow-y: auto;
+  @media screen and (max-width: 1056px) {
+    width: 100%;
+  }
+
+  @media screen and (max-width: 1440px) {
+    width: 1024px;
+  }
+
+  @media screen and (max-width: 1919px) {
+    width: 1376px;
+  }
+
+  & > div {
+    margin: 0 auto;
   }
 `;

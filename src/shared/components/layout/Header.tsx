@@ -5,30 +5,40 @@ import { Icon } from "../ui";
 export const Header = () => {
   return (
     <Container>
-      <div>
-        <Icon src="/icons/blog.svg" size={44} />
-        <h1>H0onnn</h1>
+      <div className="hedaer_inner_wrapper">
+        <Logo>
+          <Icon src="/icons/computer.svg" size={44} />
+          <h1>ITGO</h1>
+        </Logo>
+
+        <div>나중에</div>
       </div>
     </Container>
   );
 };
 
 const Container = styled.header`
-  background-color: ${THEMES.primary};
-  color: ${THEMES.white};
   width: 100%;
-  height: 16rem;
-  display: flex;
-  align-items: flex-end;
-  justify-content: start;
-  margin-bottom: 0.8rem;
-  padding: 1.6rem;
-  border-radius: 0.4rem;
-  font-size: 4.4rem;
+  padding: 1.2rem 1.6rem;
+  background-color: ${THEMES.white};
+  position: sticky;
 
-  & > div {
+  .hedaer_inner_wrapper {
     display: flex;
     align-items: center;
-    gap: 1.6rem;
+    justify-content: space-between;
+  }
+`;
+
+const Logo = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  cursor: pointer;
+
+  & > h1 {
+    font-size: 2.2rem;
+    font-weight: bold;
   }
 `;

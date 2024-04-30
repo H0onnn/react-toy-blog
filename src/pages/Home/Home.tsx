@@ -1,5 +1,3 @@
-import styled from "styled-components";
-
 import { usePostContext } from "@/context";
 import { PostList, WriteButton } from "@/features/post/components";
 import { Flex } from "@/shared/components/ui";
@@ -10,10 +8,8 @@ const Home = () => {
 
   return (
     <>
-      <Flex align="center" justify="space-between" style={{ margin: "2rem 0" }}>
-        <Header>H0onnn's react blog</Header>
-
-        <WriteButton href="/post/new">게시글 작성</WriteButton>
+      <Flex align="center" justify="flex-end" style={{ margin: "2rem 0" }}>
+        <WriteButton href="/post/new">새 글 작성</WriteButton>
       </Flex>
 
       {posts.length > 0 ? <PostList posts={posts} /> : <NoneDataFallback />}
@@ -22,8 +18,3 @@ const Home = () => {
 };
 
 export default Home;
-
-const Header = styled.h1`
-  font-size: 2.5rem;
-  font-weight: bold;
-`;
