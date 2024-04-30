@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useWritePost } from "@/features/post/apis";
 import { Flex, Input, Textarea } from "@/shared/components/ui";
 import { ButtonSection } from "./ButtonSection";
+import { TextQuill } from "@/features/post/TextQuill";
 
 export const PostForm = () => {
   const navigate = useNavigate();
@@ -49,14 +50,16 @@ export const PostForm = () => {
           }
         />
 
-        <Textarea
+        {/* <Textarea
           placeholder="내용을 입력해주세요."
           value={content}
           onChange={(value) => setContent(value)}
           required
           maxLength={2000}
           style={{ minHeight: 300 }}
-        />
+        /> */}
+
+        <TextQuill />
 
         <ButtonSection />
       </Flex>
