@@ -37,6 +37,10 @@ export const GlobalStyles = createGlobalStyle`
         font-family: 'Pretendard-Regular', sans-serif;
     }
 
+    body {
+        font-size: 1.6rem;
+    }
+
     @font-face {
     font-family: 'Pretendard-Regular';
     src: url('/fonts/Pretendard-Regular.woff2') format('woff2');
