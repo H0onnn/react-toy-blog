@@ -1,6 +1,6 @@
 export const THEMES = {
-  primary: "#2F6FEB",
-  hover: "#2D68E3",
+  primary: "#1F2937",
+  hover: "#2D3B4F",
   secondary: "#E0F2FE",
   secondaryHover: "#D3EAFD",
   gray: "#F9FAFB",
