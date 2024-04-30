@@ -45,7 +45,7 @@ const StyledButton = styled.button<ButtonProps>`
   white-space: nowrap;
   border-radius: 1.6rem;
   transition: background-color 0.3s, color 0.3s;
-  padding: 1rem;
+  padding: 0.1rem 1rem;
 
   width: ${({ fullWidth }) => (fullWidth ? "100%" : "auto")};
   color: ${({ variant }) => {
@@ -114,6 +114,19 @@ const StyledButton = styled.button<ButtonProps>`
           return THEMES.gray;
         case "goast":
           return THEMES.mediumgray;
+      }
+    }};
+
+    border: ${({ variant }) => {
+      switch (variant) {
+        case "primary":
+          return `1px solid ${THEMES.hover}`;
+        case "secondary":
+          return `1px solid ${THEMES.secondaryHover}`;
+        case "outline":
+          return `1px solid ${THEMES.gray}`;
+        case "goast":
+          return `1px solid ${THEMES.mediumgray}`;
       }
     }};
   }
